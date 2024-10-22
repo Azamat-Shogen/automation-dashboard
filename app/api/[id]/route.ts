@@ -7,7 +7,7 @@ type Params = {
   };
 };
 
-export async function name(request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, { params }: Params) {
     const { id } = params
     const URL = process.env.API_ENDPOINT_RESULTS as string;
 
@@ -19,7 +19,7 @@ export async function name(request: NextRequest, { params }: Params) {
       }
 
     try {
-        const res = await fetch(`${URL}/${id}`)
+        const res = await fetch(`${URL}/${id}`, {'cache': 'no-store'})
 
         if (!res.ok) {
             // Handle non-2xx responses from the external API
