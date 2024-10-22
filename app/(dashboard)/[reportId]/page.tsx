@@ -18,7 +18,6 @@ export default async function ReportPage({ params }: { params: { reportId: strin
       active: true,
     },
   ];
-  
 
     const report = await fetchReport(params.reportId)
 

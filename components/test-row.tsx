@@ -36,7 +36,7 @@ export const TestsRow = ({ test }: { test: ITest }) => {
           </DialogTrigger>
 
           {/* Dialog Content */}
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="s">
             {/* Dialog Header with Dynamic Background */}
             <DialogHeader className={`${headerBg} p-4 rounded-t-md`}>
               <DialogTitle className="text-white">Test Details</DialogTitle>
@@ -51,20 +51,21 @@ export const TestsRow = ({ test }: { test: ITest }) => {
               </div>
 
               <div className="mt-4">
-                <strong>Test Name:</strong> {test.name}
+                <strong>Test Name:</strong> 
+                <p className="text-sm"> {test.name}</p>
+               
               </div>
               <div>
-                <strong>Time Taken:</strong> {test.time} seconds
+                <strong>Time Taken:</strong> <span className="text-sm">{test.time} seconds</span> 
               </div> 
 
               {/* Display Failure Message if Present */}
               {test.failure_msg && (
-                <div className="mt-4 p-3 bg-red-100 text-red-600 rounded-md">
+                <div className="mt-4 p-3 bg-red-100 text-red-600 rounded-md text-sm">
                   <strong>Error Message:</strong>
                   <div>{test.failure_msg}</div>
                 </div>
               )}
-          
 
             {/* Footer with Close Button */}
             <DialogFooter className="sm:justify-start">

@@ -6,7 +6,6 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
-  import Link from "next/link";
 
 
   interface Breadcrumb {
@@ -25,7 +24,7 @@ import {
     return (
         <Breadcrumb className="hidden md:flex pt-2">
            <BreadcrumbList className="text-lg font-semibold">
-             {breadcrumbs.map((item, i) => (
+             {breadcrumbs.map((item) => (
                 !item.active ? 
                 <span key={item.label} className="flex items-center justify-between gap-2">
                 <BreadcrumbItem >

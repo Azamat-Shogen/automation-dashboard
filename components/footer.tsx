@@ -8,17 +8,17 @@ export const Footer = () => {
                 <div className="mb-4 md:mb-0">
                     <h2 className="text-lg font-semibold">Quick Links</h2>
                     <ul className="flex flex-col space-y-2">
-                        <li><a href="#home" className="hover:text-gray-300">Home</a></li>
+                        <li><a href="https://portfolio-az.netlify.app/"  target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">Home</a></li>
                     </ul>
                 </div>
 
                 {/* Right Section */}
                 <div className="flex space-x-4">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                        <LinkedInLogoIcon width={20} />
+                    <a href="https://www.linkedin.com/in/azamat101/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+                        <LinkedInLogoIcon className="w-[30px] h-[30px]" />
                     </a>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                        <GitHubLogoIcon width={20} />
+                    <a href="https://github.com/Azamat-Shogen" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+                        <GitHubLogoIcon className="w-[30px] h-[30px]" />
                     </a>
                 </div>
             </div>

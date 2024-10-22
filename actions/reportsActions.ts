@@ -19,7 +19,7 @@ export async function getReports() {
 export async function fetchReport(reportId: string) {
 
 const URL = process.env.API_ENDPOINT_RESULTS as string;
-const res = await fetch(`${URL}/${reportId}`);
+const res = await fetch(`${URL}/${reportId}`, {'cache': 'no-store'});
 
 if (!res.ok){
     throw new Error("Failed to fetch data");
