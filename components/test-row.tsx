@@ -61,9 +61,11 @@ export const TestsRow = ({ test }: { test: ITest }) => {
 
               {/* Display Failure Message if Present */}
               {test.failure_msg && (
-                <div className="mt-4 p-3 bg-red-100 text-red-600 rounded-md text-sm">
+                <div className="mt-4 p-3 bg-red-100 text-red-600 rounded-md text-sm max-w-full">
                   <strong>Error Message:</strong>
-                  <div>{test.failure_msg}</div>
+                  <p className="whitespace-normal break-words break-all overflow-hidden max-h-40 overflow-y-auto">
+                    {test.failure_msg}
+                  </p>
                 </div>
               )}
 
