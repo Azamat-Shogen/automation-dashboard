@@ -20,6 +20,7 @@ import { Badge } from "./ui/badge";
 import { EyeIcon } from "lucide-react";
 import { ReportsPagination } from "./reports-pagination";
 import { usePaginationItems } from "@/hooks/use-pagination-items";
+import { getPassingPercentage } from "@/lib/utils";
 
 
 export const formatTime = (timeString: string) => {
@@ -33,6 +34,7 @@ export const Reports = ({ reports }: { reports: IReport[] }) => {
   
   const { totalPages, currentPage, currentItems, handlePageChange } = 
   usePaginationItems({items: reports, itemsPerPage: 8})
+  
 
   return (
     <Card className="md:m-8">
@@ -71,15 +73,8 @@ export const Reports = ({ reports }: { reports: IReport[] }) => {
                 </TableCell>
 
                 <TableCell>
-                  <Badge
-                    variant={
-                      report.number_of_failed_tests > 0
-                        ? "destructive"
-                        : "success"
-                    }
-                  >
-                    {report.result_status}
-                  </Badge>
+                  <TestBadge report={report}/>
+                  
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                   {report.total_time}
@@ -105,3 +100,18 @@ export const Reports = ({ reports }: { reports: IReport[] }) => {
     </Card>
   );
 };
+
+
+function TestBadge({report}: {report:IReport}){
+  const passed_percentage = getPassingPercentage(
+    report.number_of_passed_tests,
+    report.number_of_failed_tests
+  );
+
+   // Cast string to integer "+", or Number(val)
+  const percentageNumber = +passed_percentage.split("%")[0]
+  const variantText = percentageNumber === 100 ? "success" :
+  (percentageNumber < 95 ? "destructive" : "warning")
+
+  return <Badge variant={variantText}>{report.result_status}</Badge>
+}
