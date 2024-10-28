@@ -8,6 +8,7 @@ import { ChartComponent } from "./chart-component";
 import { TestsRow } from "./test-row";
 import { usePaginationItems } from "@/hooks/use-pagination-items";
 import { ReportsPagination } from "./reports-pagination";
+import { getPassingPercentage } from "@/lib/utils";
 
 
 export const Report = ({ report }: { report: IReport }) => {
@@ -15,7 +16,7 @@ export const Report = ({ report }: { report: IReport }) => {
   const {totalPages, currentPage, currentItems, handlePageChange } = 
   usePaginationItems({items: report.tests, itemsPerPage: 8})
   
-  const passed_percengage = getPassingPercentage(
+  const passed_percentage = getPassingPercentage(
     report.number_of_passed_tests,
     report.number_of_failed_tests
   );
@@ -27,7 +28,7 @@ export const Report = ({ report }: { report: IReport }) => {
         <CardItem title="Start time" value={report.timestamp} />
         <CardItem title="End time" value={report.end_time} />
         <CardItem title="Duration" value={report.total_time} />
-        <CardItem title="Passed %" value={passed_percengage} />
+        <CardItem title="Passed %" value={passed_percentage} />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2 w-full">
@@ -67,14 +68,4 @@ export const Report = ({ report }: { report: IReport }) => {
   );
 };
 
-function getPassingPercentage(passedTests: number, failedTests: number) {
-  const totalTests = passedTests + failedTests;
 
-  // Calculate percentage only if there are tests
-  if (totalTests === 0) return "0%";
-
-  const passingPercentage = (passedTests / totalTests) * 100;
-
-  // Return as a formatted string, rounded to the nearest whole number
-  return `${Math.round(passingPercentage)}%`;
-}
