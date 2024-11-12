@@ -58,7 +58,7 @@ export const Reports = ({ reports }: { reports: IReport[] }) => {
             {currentItems.map((report) => (
               <TableRow key={report.id}>
                 <TableCell className="font-medium">
-                  {report.test_suite_name + "-" + report.id}
+                  {report.test_suite_name}
                 </TableCell>
                 <TableCell>{report.tests.length}</TableCell>
                 <TableCell className="hidden md:table-cell">

@@ -21,6 +21,12 @@ export const ReportsPagination = ({
     handlePageChange
 }: PaginationItemType) => {
 
+
+  const displayPages = Array.from(
+    { length: Math.min(totalPages, 4) }, 
+    (_, i) => i + 1
+  );
+
     return (
         <Pagination>
             <PaginationContent>
@@ -30,22 +36,40 @@ export const ReportsPagination = ({
                 onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
               />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
+            {/* Display the pages up to the lesser of 4 or totalPages */}
+            {displayPages.map((page) => (
+              <PaginationItem key={page}>
                 <PaginationLink
                   href="#"
-                  isActive={currentPage === index + 1}
-                  onClick={() => handlePageChange(index + 1)}
+                  isActive={currentPage === page}
+                  onClick={() => handlePageChange(page)}
                 >
-                  {index + 1}
+                  {page}
                 </PaginationLink>
               </PaginationItem>
             ))}
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
+
+             {/* Display ellipsis if totalPages is greater than 4 and currentPage is beyond the first few pages */}
+            {totalPages > 4 && currentPage > 4 && (
+              <>
+                <PaginationItem>
+                    <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                <PaginationLink
+                    href="#"
+                    isActive={currentPage === currentPage}
+                    onClick={() => handlePageChange(currentPage)}
+                  >
+                    {currentPage}
+                </PaginationLink>
+               </PaginationItem>
+              </>
+            )}
+            
             <PaginationItem>
               <PaginationNext
+                
                 href="#"
                 onClick={() =>
                   handlePageChange(Math.min(currentPage + 1, totalPages))
